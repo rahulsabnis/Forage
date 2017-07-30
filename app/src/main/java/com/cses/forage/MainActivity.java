@@ -23,7 +23,6 @@ import com.usebutton.sdk.context.Location;
 import com.usebutton.sdk.util.LocationProvider;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
 
