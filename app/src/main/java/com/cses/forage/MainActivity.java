@@ -90,9 +90,18 @@ public class MainActivity extends AppCompatActivity {
                 Intent transitionToOrder = new Intent(MainActivity.this, OrderActivity.class);
                 CardProvider provider = card.getProvider();
 
+                Vendor vendor = vendorArrayList.get(position);
+                ArrayList<MenuItem> items = vendor.menuItems;
+
                 Bundle extras = new Bundle();
                 extras.putInt("image", imageRes[position]);
                 extras.putString("storeName", provider.getTitle());
+                extras.putInt("lengthOfItems", items.size());
+                for (int i = 0; i < items.size(); i++) {
+                    MenuItem item = items.get(i);
+                    extras.putString("name"+i, item.name);
+                    extras.putDouble("price"+i, item.price);
+                }
                 transitionToOrder.putExtras(extras);
 
                 startActivity(transitionToOrder);

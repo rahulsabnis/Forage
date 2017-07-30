@@ -1,6 +1,7 @@
 package com.cses.forage;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.view.View;
 
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.CardProvider;
+import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
 
 public class OrderActivity extends AppCompatActivity {
@@ -27,17 +29,36 @@ public class OrderActivity extends AppCompatActivity {
 
         MaterialListView listView = (MaterialListView) findViewById(R.id.listView);
 
-        Card card = new Card.Builder(this)
-                .setTag("Item")
-                .withProvider(new CardProvider())
-                .setLayout(R.layout.material_list_custom_item)
-                .setTitle("Chocolate Cake")
-                .setDescription("Made fresh daily with real chocolate")
-                .setDrawable(getDrawable(R.drawable.cake))
-                .endConfig()
-                .build();
+        int length = extras.getInt("lengthOfItems");
 
-        listView.getAdapter().add(card);
+        for (int i = 0; i < length; i++) {
+            String itemName = extras.getString("name"+i);
+            Double price = extras.getDouble("price"+i);
+
+            Card card = new Card.Builder(this)
+                    .setTag("Item")
+                    .withProvider(new CardProvider())
+                    .setLayout(R.layout.material_list_custom_item)
+                    .setTitle(itemName)
+                    .setDescription(String.format("$%.2f", price))
+                    .setDrawable(getDrawable(R.drawable.cake))
+                    .endConfig()
+                    .build();
+
+            listView.getAdapter().add(card);
+        }
+
+        listView.addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull Card card, int position) {
+                
+            }
+
+            @Override
+            public void onItemLongClick(@NonNull Card card, int position) {
+
+            }
+        });
 
         AppBarLayout layout = (AppBarLayout) findViewById(R.id.app_bar);
         layout.setBackgroundResource(extras.getInt("image"));
