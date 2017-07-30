@@ -11,10 +11,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
+        tools:context="com.travijuu.numberpicker.sample.MainActivity">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/description"
             android:layout_margin="@dimen/text_margin"
             android:text="@string/item_description" />
 
@@ -22,7 +25,47 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
+            android:id="@+id/quantity"
             android:text="@string/quantity" />
+
+        <com.travijuu.numberpicker.library.NumberPicker
+            android:id="@+id/picker"
+            android:layout_marginTop="20dp"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            numberpicker:min="1"
+            numberpicker:max="10"
+            numberpicker:value="-5"
+            numberpicker:unit="1"
+            android:layout_gravity="center"
+            numberpicker:focusable="false"
+            numberpicker:custom_layout="@layout/number_picker_layout"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="80dp"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:textSize="20dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginEnd="@dimen/text_margin"
+            android:id="@+id/total"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Order!"
+            android:id="@+id/submitButton"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            style="@style/Material.Button.Test"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
