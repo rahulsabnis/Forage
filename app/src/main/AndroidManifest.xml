@@ -25,7 +25,10 @@
             android:name="com.usebutton.applicationid"
             android:value="app-412162398bd07072" />
 
+        <activity
+            android:name=".OrderActivity"
+            android:label="@string/title_activity_order"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
-
 
 </manifest>
