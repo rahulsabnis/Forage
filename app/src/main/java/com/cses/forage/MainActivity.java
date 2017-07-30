@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.CardProvider;
@@ -21,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.usebutton.sdk.ButtonContext;
 import com.usebutton.sdk.ButtonDropin;
 import com.usebutton.sdk.context.Location;
-import com.usebutton.sdk.internal.events.DatabaseStore;
 import com.usebutton.sdk.util.LocationProvider;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         mDropin = (ButtonDropin) findViewById(R.id.deliveryButton);
 
-//        showButton();
-
         mListView = (MaterialListView) findViewById(R.id.material_listview);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -58,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
                     String location = places.child("location").getValue(String.class);
                     createCard(name, location, imageRes[i]);
                     i++;
+                }
+
+                if (i == 0) {
+                    showButton();
                 }
             }
 
@@ -75,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(@NonNull Card card, int position) {
                 Intent transitionToOrder = new Intent(MainActivity.this, OrderActivity.class);
+                CardProvider provider = card.getProvider();
+
+                Bundle extras = new Bundle();
+                extras.putInt("image", imageRes[position]);
+                extras.putString("storeName", provider.getTitle());
+                transitionToOrder.putExtras(extras);
+
                 startActivity(transitionToOrder);
             }
 
