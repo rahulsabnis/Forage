@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "948059141801",
+    "firebase_url": "https://forage-8020f.firebaseio.com",
+    "project_id": "forage-8020f",
+    "storage_bucket": "forage-8020f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948059141801:android:7f5f01584b1ffbe6",
+        "android_client_info": {
+          "package_name": "com.cses.forage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948059141801-98u13p2tctc5andp01b00or4rmv59b4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfJYVOLc5WFaWbstzrktspATC76OUwqlM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

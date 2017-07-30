@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         mDropin = (ButtonDropin) findViewById(R.id.deliveryButton);
 
-        showButton();
+//        showButton();
 
         MaterialListView mListView = (MaterialListView) findViewById(R.id.material_listview);
 
