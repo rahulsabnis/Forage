@@ -6,13 +6,26 @@
     android:layout_height="match_parent"
     tools:context="com.cses.forage.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <com.dexafree.materialList.view.MaterialListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/material_listview"/>
+
+    </RelativeLayout>
+
+    <com.usebutton.sdk.ButtonDropin
+        xmlns:button="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/deliveryButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        button:btn_buttonId="btn-2681cda84a55a158" />
 
 </android.support.constraint.ConstraintLayout>
