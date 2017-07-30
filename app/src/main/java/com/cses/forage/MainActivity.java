@@ -24,9 +24,13 @@ import com.usebutton.sdk.context.Location;
 import com.usebutton.sdk.internal.events.DatabaseStore;
 import com.usebutton.sdk.util.LocationProvider;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class MainActivity extends AppCompatActivity {
 
     private ButtonDropin mDropin;
+    private ArrayList<Vendor> vendorArrayList = new ArrayList<Vendor>();
 
     private MaterialListView mListView;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -56,7 +60,16 @@ public class MainActivity extends AppCompatActivity {
                 for( DataSnapshot places : vendors.getChildren() ) {
                     String name = places.child("name").getValue(String.class);
                     String location = places.child("location").getValue(String.class);
-                    createCard(name, location, imageRes[i]);
+                    DataSnapshot items = places.child("items");
+                    ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
+                    for (DataSnapshot menuItems : items.getChildren()) {
+                        Number test = (Number) menuItems.child("price").getValue();
+                        double price = test.doubleValue();
+                        MenuItem toAdd = new MenuItem(menuItems.child("name").getValue(String.class),
+                                price);
+                        menu.add(toAdd);
+                    }
+                    createCard(name, location, menu, imageRes[i]);
                     i++;
                 }
             }
@@ -113,7 +126,10 @@ public class MainActivity extends AppCompatActivity {
         mDropin.prepareForDisplay(context);
     }
 
-    private void createCard(String title, String description, int drawable) {
+    private void createCard(String title, String description, ArrayList<MenuItem> menu,
+                            int drawable) {
+        Vendor newPlace = new Vendor(title, description, menu);
+        vendorArrayList.add(newPlace);
         Card card = new Card.Builder(this)
                 .setTag("Restaurant")
                 .withProvider(new CardProvider())
