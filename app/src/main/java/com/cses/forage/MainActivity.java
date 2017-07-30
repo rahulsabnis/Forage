@@ -13,9 +13,15 @@ import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.CardProvider;
 import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.usebutton.sdk.ButtonContext;
 import com.usebutton.sdk.ButtonDropin;
 import com.usebutton.sdk.context.Location;
+import com.usebutton.sdk.internal.events.DatabaseStore;
 import com.usebutton.sdk.util.LocationProvider;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ButtonDropin mDropin;
 
     private MaterialListView mListView;
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     private int[] imageRes = {R.drawable.food, R.drawable.food2, R.drawable.food3};
 
@@ -39,9 +46,30 @@ public class MainActivity extends AppCompatActivity {
 
         mListView = (MaterialListView) findViewById(R.id.material_listview);
 
-        for (int i = 0; i < imageRes.length; i++) {
-            createCard("Joel's Pub", "Delivery Time: 45 minutes", imageRes[i]);
-        }
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                DataSnapshot vendors = dataSnapshot.child("Vendors");
+                int i = 0;
+                for( DataSnapshot places : vendors.getChildren() ) {
+                    String name = places.child("name").getValue(String.class);
+                    String location = places.child("location").getValue(String.class);
+                    createCard(name, location, imageRes[i]);
+                    i++;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
+        //for (int i = 0; i < imageRes.length; i++) {
+          //  createCard("Joel's Pub", "Delivery Time: 45 minutes", imageRes[i]);
+        //}
 
         mListView.addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
             @Override
