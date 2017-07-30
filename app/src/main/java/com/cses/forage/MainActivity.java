@@ -1,12 +1,9 @@
 package com.cses.forage;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.CardProvider;
@@ -17,17 +14,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.usebutton.sdk.ButtonContext;
 import com.usebutton.sdk.ButtonDropin;
-import com.usebutton.sdk.context.Location;
-import com.usebutton.sdk.util.LocationProvider;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ButtonDropin mDropin;
+
     private ArrayList<Vendor> vendorArrayList = new ArrayList<Vendor>();
 
     private MaterialListView mListView;
@@ -41,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         com.usebutton.sdk.Button.getButton(this).start();
-
-        mDropin = (ButtonDropin) findViewById(R.id.deliveryButton);
 
         mListView = (MaterialListView) findViewById(R.id.material_listview);
 
@@ -67,10 +58,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     createCard(name, location, menu, imageRes[i]);
                     i++;
-                }
-
-                if (i == 0) {
-                    showButton();
                 }
             }
 
@@ -112,34 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void showButton() {
-
-        final ButtonContext context = new ButtonContext();
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        final android.location.Location loc = new LocationProvider(this).getBestLocation();
-
-//        if (loc != null) {
-//            final Location location = new Location(loc);
-//            context.setUserLocation(location);
-//        } else {
-
-            final Location location = new Location("Here", 37.563724, -122.325342);
-            context.setUserLocation(location);
-//        }
-
-        mDropin.prepareForDisplay(context);
     }
 
     private void createCard(String title, String description, ArrayList<MenuItem> menu,

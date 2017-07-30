@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Need a ride to your pickup location?"/>
+
+    <com.usebutton.sdk.ButtonDropin
+        xmlns:button="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="8dp"
+        android:id="@+id/deliveryButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        button:btn_buttonId="btn-2681cda84a55a158" />
+
+</LinearLayout>

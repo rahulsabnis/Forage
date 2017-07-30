@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginStart="@dimen/text_margin"
             android:layout_marginEnd="@dimen/text_margin"

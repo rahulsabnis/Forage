@@ -21,11 +21,4 @@
 
     </RelativeLayout>
 
-    <com.usebutton.sdk.ButtonDropin
-        xmlns:button="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/deliveryButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        button:btn_buttonId="btn-2681cda84a55a158" />
-
 </android.support.constraint.ConstraintLayout>

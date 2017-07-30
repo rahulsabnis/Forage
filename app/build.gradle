@@ -33,6 +33,7 @@ dependencies {
     compile 'com.google.firebase:firebase-storage:11.0.2'
     compile 'com.google.firebase:firebase-database:11.0.2'
     compile 'com.github.travijuu:numberpicker:1.0.7'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
     compile('com.mikepenz:materialdrawer:5.9.0@aar') {
         transitive = true
     }
