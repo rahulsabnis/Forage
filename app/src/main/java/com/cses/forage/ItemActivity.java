@@ -93,7 +93,7 @@ public class ItemActivity extends AppCompatActivity {
         }
 
         // Setup your context
-        final Location location = new Location("Here", 37.563724, -122.325342);
+        final Location location = new Location("Draper University", 37.563724, -122.325342);
         final ButtonContext context = ButtonContext.withSubjectLocation(location);
 
         // Prepare the Button for display with our context
